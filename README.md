@@ -6,6 +6,8 @@
 
 `go` command move to the last saved _path_.
 
+`saved` command list all saves.
+
 You can **name** saved paths.
 
 `go 1` move you to `save 1`
@@ -36,6 +38,13 @@ function go()
 		echo "The save $1 does not exists.";
 	fi
 };
+
+function saved()
+{
+	if [ -d ~/save_path ]; then
+		ls -1 ~/save_path | grep ".save_path" | sed -E "s/.save_path$//"
+	fi
+}
 ```
 
 _You can change the command name by changing the function name._

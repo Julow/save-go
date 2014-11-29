@@ -17,3 +17,10 @@ function go()
 		echo "The save $1 does not exists.";
 	fi
 };
+
+function saved()
+{
+	if [ -d ~/save_path ]; then
+		ls -1 ~/save_path | grep ".save_path" | sed -E "s/.save_path$//"
+	fi
+}
