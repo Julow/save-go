@@ -2,29 +2,39 @@
 
 `save` and `go` commands.
 
-`save` command save the current _pwd_.
+`save` command save the current _path_.
 
-`go` command move to the last saved _pwd_.
+`go` command move to the last saved _path_.
 
-You can **name** saved pwds.
+You can **name** saved paths.
 
 `go 1` move you to `save 1`
 
 `go libft` move you to `save libft`
 
+_The name is optional._<br />
+_The name cannot contains white space._
+
 ## Installation
 
-Add this functions to your _rc_ file. (**.zshrc**, .bash_aliases, .profile, .bashrc, etc...)
+Add these functions to your _rc_ file. (**.zshrc**, .bash_aliases, .profile, .bashrc, etc...)
 
 ```shell
 function save()
 {
-	pwd > ~/save$1.tmp;
+	if [ ! -d ~/save_path ]; then
+		mkdir ~/save_path
+	fi
+	pwd > ~/save_path/$1.save_path;
 };
 
 function go()
 {
-	cd `cat ~/save$1.tmp`;
+	if [ -f ~/save_path/$1.save_path ]; then
+		cd `cat ~/save_path/$1.save_path`;
+	else
+		echo "The save $1 does not exists.";
+	fi
 };
 ```
 
